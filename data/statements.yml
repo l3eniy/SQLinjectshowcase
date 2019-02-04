@@ -1,0 +1,27 @@
+create:
+  - 'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT);'
+  - 'CREATE TABLE IF NOT EXISTS passwords (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, password_hash TEXT, password_salt TEXT, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id));'
+  - 'CREATE TABLE IF NOT EXISTS courses (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);'
+  - 'CREATE TABLE IF NOT EXISTS grades (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, course_id INTEGER, grade INTEGER, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id), CONSTRAINT fk_courses FOREIGN KEY (course_id) REFERENCES courses(id));'
+initialize:
+    # Students
+  - 'INSERT INTO students (name, email) VALUES ("Jason Cleveland", "jason.cleveland@example.com");'
+  - 'INSERT INTO students (name, email) VALUES ("Bobby Tables", "bobby.tables@example.com");'
+  - 'INSERT INTO students (name, email) VALUES ("John Smith", "john.smith@example.com");'
+  - 'INSERT INTO students (name, email) VALUES ("Jane Doe", "jane.doe@example.com");'
+    # Courses
+  - 'INSERT INTO courses (name, description) VALUES ("CS 1073", "Intro to Programming I");'
+  - 'INSERT INTO courses (name, description) VALUES ("CS 1083", "Intro to Programming I");'
+  - 'INSERT INTO courses (name, description) VALUES ("CS 2043", "Software Engineering");'
+  - 'INSERT INTO courses (name, description) VALUES ("CS 2053", "Intro to Mobile Application Development");'
+  - 'INSERT INTO courses (name, description) VALUES ("CS 2253", "Machine Level Programming");'
+  - 'INSERT INTO courses (name, description) VALUES ("CS 2263", "Systems Software Development");'
+  - 'INSERT INTO courses (name, description) VALUES ("CS 3413", "Operating Systems");'
+  - 'INSERT INTO courses (name, description) VALUES ("CS 4417", "Software Security");'
+  - 'INSERT INTO courses (name, description) VALUES ("INFO 2403", "Information Security");'
+  - 'INSERT INTO courses (name, description) VALUES ("INFO 3103", "Programming on the Web");'
+destroy:
+  - 'DROP TABLE grades;'
+  - 'DROP TABLE courses;'
+  - 'DROP TABLE passwords;'
+  - 'DROP TABLE students;'
