@@ -61,14 +61,12 @@ class DatabaseHelper(object):
 
     def select(self, query):
         """Runs the submitted query against the database"""
-        print(query)
         cursor = self.cursor
         cursor.execute(query)
         return cursor.fetchall()
 
     def insert(self, query):
         """Runs the submitted query against the database"""
-        print(query)
         cursor = self.cursor
         cursor.executescript(query)
         self._db_connection.commit()
@@ -76,9 +74,6 @@ class DatabaseHelper(object):
     def select_safe(self, query, params):
         """Runs the submitted query against the database"""
         cursor = self.cursor
-        print(query)
-        print(params)
-        print(type(params))
         if params:
             cursor.execute(query, params)
         else:
@@ -88,9 +83,6 @@ class DatabaseHelper(object):
     def insert_safe(self, query, params):
         """Runs the submitted query against the database"""
         cursor = self.cursor
-        print(query)
-        print(params)
-        print(type(params))
         if params:
             cursor.execute(query, params)
         else:
