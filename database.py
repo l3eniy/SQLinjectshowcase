@@ -4,64 +4,95 @@ import sqlite3
 import yaml
 
 
-DATABASE_FILE = 'database.sqlite'
-STATEMENTS_FILE = 'statements.yml'
+DATABASE_FILE = os.path.join('data', 'database.sqlite')
+STATEMENTS_FILE = os.path.join('data', 'statements.yml')
 
 
 class DatabaseHelper(object):
     def __init__(self):
-        self._db = None
+        self._db_connection = None
 
     def __enter__(self):
-        self._create_database()
+        self._db_connection = sqlite3.connect(DATABASE_FILE)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self._db.close()
+        self._db_connection.close()
 
-    def _create_database(self):
+    def _create_tables(self):
         """Creates a database from the instructions in `statements.yml`"""
-        self._db = sqlite3.connect(os.path.join('data', DATABASE_FILE))
-
-        with open(os.path.join('data', STATEMENTS_FILE), 'r+') as f:
+        with open(STATEMENTS_FILE, 'r+') as f:
             statements = yaml.safe_load(f)
 
         create_statements = statements.get('create', list())
 
         for s in create_statements:
-            self._db.execute(s)
+            self.insert(s)
 
-    def _destroy_database(self):
+    def _destroy_tables(self):
         """Deletes the database from the instructions in `statements.yml`"""
-        with open(os.path.join('data', STATEMENTS_FILE), 'r+') as f:
+        with open(STATEMENTS_FILE, 'r+') as f:
             statements = yaml.safe_load(f)
 
         destroy_statements = statements.get('destroy', list())
 
         for s in destroy_statements:
-            self._db.execute(s)
-
-        self._db = None
+            self.insert(s)
 
     @property
-    def database(self):
-        """
+    def cursor(self):
+        """Returns a cursor for this connection"""
+        if not self._db_connection:
+            self._db_connection = sqlite3.connect(DATABASE_FILE)
+        return self._db_connection.cursor()
 
-        :return:
-        """
-        if not self._db:
-            self._create_database()
-        return self._db
-
-    def restart(self):
+    def initialize(self):
         """Destroys and reinitializes the database"""
-        self._destroy_database()
-        self._create_database()
+        self._destroy_tables()
+        self._create_tables()
 
-        with open(os.path.join('data', STATEMENTS_FILE), 'r+') as f:
+        with open(STATEMENTS_FILE, 'r+') as f:
             statements = yaml.safe_load(f)
 
         initialize_statements = statements.get('initialize', list())
 
         for s in initialize_statements:
-            self._db.execute(s)
+            self.insert(s)
+
+    def select(self, query):
+        """Runs the submitted query against the database"""
+        print(query)
+        cursor = self.cursor
+        cursor.execute(query)
+        return cursor.fetchall()
+
+    def insert(self, query):
+        """Runs the submitted query against the database"""
+        print(query)
+        cursor = self.cursor
+        cursor.executescript(query)
+        self._db_connection.commit()
+
+    def select_safe(self, query, params):
+        """Runs the submitted query against the database"""
+        cursor = self.cursor
+        print(query)
+        print(params)
+        print(type(params))
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+        return cursor.fetchall()
+
+    def insert_safe(self, query, params):
+        """Runs the submitted query against the database"""
+        cursor = self.cursor
+        print(query)
+        print(params)
+        print(type(params))
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+        self._db_connection.commit()

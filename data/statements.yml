@@ -1,8 +1,13 @@
 create:
   - 'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT);'
-  - 'CREATE TABLE IF NOT EXISTS passwords (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, password_hash TEXT, password_salt TEXT, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id));'
   - 'CREATE TABLE IF NOT EXISTS courses (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);'
-  - 'CREATE TABLE IF NOT EXISTS grades (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, course_id INTEGER, grade INTEGER, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id), CONSTRAINT fk_courses FOREIGN KEY (course_id) REFERENCES courses(id));'
+  - 'CREATE TABLE IF NOT EXISTS grades (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, course_id INTEGER, grade TEXT, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id), CONSTRAINT fk_courses FOREIGN KEY (course_id) REFERENCES courses(id));'
+  - 'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password_hash TEXT, password_salt TEXT);'
+destroy:
+  - 'DROP TABLE IF EXISTS grades;'
+  - 'DROP TABLE IF EXISTS courses;'
+  - 'DROP TABLE IF EXISTS students;'
+  - 'DROP TABLE IF EXISTS users;'
 initialize:
     # Students
   - 'INSERT INTO students (name, email) VALUES ("Jason Cleveland", "jason.cleveland@example.com");'
@@ -20,8 +25,15 @@ initialize:
   - 'INSERT INTO courses (name, description) VALUES ("CS 4417", "Software Security");'
   - 'INSERT INTO courses (name, description) VALUES ("INFO 2403", "Information Security");'
   - 'INSERT INTO courses (name, description) VALUES ("INFO 3103", "Programming on the Web");'
-destroy:
-  - 'DROP TABLE grades;'
-  - 'DROP TABLE courses;'
-  - 'DROP TABLE passwords;'
-  - 'DROP TABLE students;'
+    # Grades
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (1, 6, "A-")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (1, 8, "A+")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (3, 1, "A-")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (4, 7, "A-")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (1, 2, "A-")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 1, "B-")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 2, "B")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 3, "B+")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 4, "C")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 5, "A")'
+  - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 6, "C")'
