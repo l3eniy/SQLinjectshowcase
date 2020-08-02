@@ -48,7 +48,7 @@ def query():
             database.insert(statement_u)
             results = database.select(statement_u)
             print(password)
-            print(results[0])
+            print(str(results[0]))
             retval = list()
             for result in results:
                 retval.append(str(result))
