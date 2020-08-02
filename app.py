@@ -24,7 +24,7 @@ def query():
     if request.method == 'GET':
         return render_template('query.html')
     if request.method == 'POST':
-        search_term = request.form.get('search_term', '')
+        search_term = request.form.get('username', '')
         # table = request.form.get('table_select', '')
         with DatabaseHelper() as database:
             # statement = 'SELECT * FROM {0} WHERE name LIKE "%{1}%";'.format(table, search_term)
