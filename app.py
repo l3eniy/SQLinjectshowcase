@@ -24,34 +24,17 @@ def query():
     if request.method == 'GET':
         return render_template('query.html')
     if request.method == 'POST':
-        search_term = request.form.get('username', '')
-        # table = request.form.get('table_select', '')
+        username = request.form.get('username', '')
+        password = request.form.get('password', '')
         with DatabaseHelper() as database:
-            # statement = 'SELECT * FROM {0} WHERE name LIKE "%{1}%";'.format(table, search_term)
-            statement = 'SELECT * FROM creditcard WHERE name LIKE "%{0}%";'.format(search_term)
+            # statement = 'SELECT * FROM {0} WHERE name LIKE "%{1}%";'.format(table, username)
+            statement = 'SELECT * FROM creditcard WHERE name LIKE "%{0}%";'.format(username)
             database.insert(statement)
             results = database.select(statement)
             retval = list()
             for result in results:
                 retval.append(str(result))
             return '<br>'.join(retval)
-
-
-# @app.route('/query-s/', methods=['GET', 'POST'])
-# def query_safe():
-#     """Runs a parameterized query against the database"""
-#     if request.method == 'GET':
-#         return render_template('query-s.html')
-#     if request.method == 'POST':
-#         search_term = '%' + request.form.get('search_term', '') + '%'
-#         table = request.form.get('table_select', '')
-#         with DatabaseHelper() as database:
-#             statement = 'SELECT * FROM {0} WHERE name LIKE ?;'.format(table)
-#             results = database.select_safe(statement, (search_term,))
-#             retval = list()
-#             for result in results:
-#                 retval.append(str(result))
-#             return '<br>'.join(retval)
 
 
 if __name__ == '__main__':
