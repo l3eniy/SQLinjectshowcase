@@ -40,4 +40,4 @@ initialize:
   - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 5, "A")'
   - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 6, "C")'
    # Creditcard
-  - 'INSERT INTO creditcard (name, creditcompany, cvv, expires) VALUES ("Jason Cleveland", "VISA", 577, '2023-06-01')'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, expires) VALUES ("Jason Cleveland", "VISA", 577, "2023-06-01")'
