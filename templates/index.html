@@ -20,5 +20,22 @@
         <a href="/initialize"><button>Initialize Database</button></a>
     </div>
 </div>
+<div style="text-align: center">
+    <div style="display: inline-block">
+        <p>Search for a student or course by name</p>
+        <form method="post">
+            <div>
+                <label>Search Term: <input type="text" name="search_term"/></label>
+            </div>
+            <br>
+            <div>
+                <label><input type="radio" id="students" value="students" name="table_select" checked/>Students</label>
+                <label><input type="radio" id="courses" value="courses" name="table_select"/>Courses</label>
+            </div>
+            <br>
+            <button type="submit">Submit search</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
