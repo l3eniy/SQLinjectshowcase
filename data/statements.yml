@@ -1,11 +1,13 @@
 create:
   - 'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT);'
+  - 'CREATE TABLE IF NOT EXISTS login (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT);'
   - 'CREATE TABLE IF NOT EXISTS courses (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);'
   - 'CREATE TABLE IF NOT EXISTS grades (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, course_id INTEGER, grade TEXT, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id), CONSTRAINT fk_courses FOREIGN KEY (course_id) REFERENCES courses(id));'
   - 'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password_hash TEXT, password_salt TEXT);'
   - 'CREATE TABLE IF NOT EXISTS creditcard (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, creditcompany TEXT, cvv INTEGER, expires DATE);'
 destroy:
   - 'DROP TABLE IF EXISTS grades;'
+  - 'DROP TABLE IF EXISTS login;'
   - 'DROP TABLE IF EXISTS courses;'
   - 'DROP TABLE IF EXISTS students;'
   - 'DROP TABLE IF EXISTS users;'
@@ -41,3 +43,6 @@ initialize:
   - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 6, "C")'
    # Creditcard
   - 'INSERT INTO creditcard (name, creditcompany, cvv, expires) VALUES ("Jason Cleveland", "VISA", 577, "2023-06-01")'
+   # Login
+  - 'INSERT INTO login (username, password) VALUES ("root", "root");'
+  - 'INSERT INTO login (username, password) VALUES ("ben", "123");'

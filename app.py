@@ -27,7 +27,6 @@ def query():
         username = request.form.get('username', '')
         password = request.form.get('password', '')
         with DatabaseHelper() as database:
-            # statement = 'SELECT * FROM {0} WHERE name LIKE "%{1}%";'.format(table, username)
             statement = 'SELECT * FROM creditcard WHERE name LIKE "%{0}%";'.format(username)
             database.insert(statement)
             results = database.select(statement)
