@@ -18,23 +18,6 @@ def initialize():
     return redirect(request.referrer, 302)
 
 
-# @app.route('/', methods=['GET', 'POST'])
-# def query():
-#     """Runs a RAW query against the database"""
-#     if request.method == 'GET':
-#         return render_template('query.html')
-#     if request.method == 'POST':
-#         username = request.form.get('username', '')
-#         password = request.form.get('password', '')
-#         with DatabaseHelper() as database:
-#             statement = 'SELECT * FROM creditcard WHERE name LIKE "%{0}%";'.format(username)
-#             database.insert(statement)
-#             results = database.select(statement)
-#             retval = list()
-#             for result in results:
-#                 retval.append(str(result))
-#             return '<br>'.join(retval)
-
 @app.route('/', methods=['GET', 'POST'])
 def query():
     """Runs a RAW query against the database"""
@@ -44,16 +27,33 @@ def query():
         username = request.form.get('username', '')
         password = request.form.get('password', '')
         with DatabaseHelper() as database:
-            statement_u = 'SELECT password FROM login WHERE username LIKE "%{0}%";'.format(username)
-            database.insert(statement_u)
-            results = database.select(statement_u)
-            print(password)
-            print(str(results[0][0]))
-            if password == str(results[0][0]):
-                ergebnis = "Success !"
-            else:
-                ergebnis = "Username or Password wrong !"
-            return '<br>'.join(ergebnis)
+            statement = 'SELECT * FROM creditcard WHERE name LIKE "%{0}%";'.format(username)
+            database.insert(statement)
+            results = database.select(statement)
+            retval = list()
+            for result in results:
+                retval.append(str(result))
+            return '<br>'.join(retval)
+
+# @app.route('/', methods=['GET', 'POST'])
+# def query():
+#     """Runs a RAW query against the database"""
+#     if request.method == 'GET':
+#         return render_template('query.html')
+#     if request.method == 'POST':
+#         username = request.form.get('username', '')
+#         password = request.form.get('password', '')
+#         with DatabaseHelper() as database:
+#             statement_u = 'SELECT password FROM login WHERE username LIKE "%{0}%";'.format(username)
+#             database.insert(statement_u)
+#             results = database.select(statement_u)
+#             print(password)
+#             print(str(results[0][0]))
+#             if password == str(results[0][0]):
+#                 ergebnis = "Success !"
+#             else:
+#                 ergebnis = "Username or Password wrong !"
+#             return '<br>'.join(ergebnis)
 
 
 if __name__ == '__main__':
