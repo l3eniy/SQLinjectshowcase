@@ -49,10 +49,11 @@ def query():
             results = database.select(statement_u)
             print(password)
             print(str(results[0][0]))
-            retval = list()
-            for result in results:
-                retval.append(str(result))
-            return '<br>'.join(retval)
+            if password != str(results[0][0]):
+                ergebnis = "Success !"
+            else:
+                ergebnis = "Username or Password wrong !"
+            return '<br>'.ergebnis
 
 
 if __name__ == '__main__':
