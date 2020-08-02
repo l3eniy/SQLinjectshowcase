@@ -47,6 +47,7 @@ def query():
             statement_u = 'SELECT password FROM login WHERE username LIKE "%{0}%";'.format(username)
             database.insert(statement_u)
             results = database.select(statement_u)
+            print(password)
             print(results)
             retval = list()
             for result in results:
