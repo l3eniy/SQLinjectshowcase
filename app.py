@@ -24,10 +24,9 @@ def query():
     if request.method == 'GET':
         return render_template('query.html')
     if request.method == 'POST':
-        username = request.form.get('username', '')
-        password = request.form.get('password', '')
+        name = request.form.get('name', '')
         with DatabaseHelper() as database:
-            statement = 'SELECT * FROM creditcard WHERE name LIKE "%{0}%";'.format(username)
+            statement = 'SELECT * FROM students WHERE name LIKE "%{0}%";'.format(name)
             database.insert(statement)
             results = database.select(statement)
             retval = list()
