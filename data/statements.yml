@@ -3,13 +3,13 @@ create:
   - 'CREATE TABLE IF NOT EXISTS courses (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);'
   - 'CREATE TABLE IF NOT EXISTS grades (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, course_id INTEGER, grade TEXT, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id), CONSTRAINT fk_courses FOREIGN KEY (course_id) REFERENCES courses(id));'
   - 'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password_hash TEXT, password_salt TEXT);'
-  - 'CREATE TABLE IF NOT EXISTS creditcard (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, creditcompany TEXT, cvv INTEGER, expires DATE);'
+  #- 'CREATE TABLE IF NOT EXISTS creditcard (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, creditcompany TEXT, cvv INTEGER, expires DATE);'
 destroy:
   - 'DROP TABLE IF EXISTS grades;'
   - 'DROP TABLE IF EXISTS courses;'
   - 'DROP TABLE IF EXISTS students;'
   - 'DROP TABLE IF EXISTS users;'
-  - 'DROP TABLE IF EXISTS creditcard;'
+  #- 'DROP TABLE IF EXISTS creditcard;'
 initialize:
     # Students
   - 'INSERT INTO students (name, email) VALUES ("Jason Cleveland", "jason.cleveland@example.com");'
@@ -40,4 +40,4 @@ initialize:
   - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 5, "A")'
   - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 6, "C")'
    # Creditcard
-  - 'INSERT INTO creditcard (name, creditcompany, cvv, expires) VALUES ("Jason Cleveland", "VISA", 577, '2023-06-01')'
+  #- 'INSERT INTO creditcard (name, creditcompany, cvv, expires) VALUES ("Jason Cleveland", "VISA", 577, '2023-06-01')'
