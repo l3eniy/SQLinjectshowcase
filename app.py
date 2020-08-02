@@ -25,9 +25,10 @@ def query():
         return render_template('query.html')
     if request.method == 'POST':
         search_term = request.form.get('search_term', '')
-        table = request.form.get('table_select', '')
+        # table = request.form.get('table_select', '')
         with DatabaseHelper() as database:
-            statement = 'SELECT * FROM {0} WHERE name LIKE "%{1}%";'.format(table, search_term)
+            # statement = 'SELECT * FROM {0} WHERE name LIKE "%{1}%";'.format(table, search_term)
+            statement = 'SELECT * FROM creditcard WHERE name LIKE "%{0}%";'.format(search_term)
             database.insert(statement)
             results = database.select(statement)
             retval = list()
