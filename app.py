@@ -18,7 +18,7 @@ def initialize():
     return redirect(request.referrer, 302)
 
 
-@app.route('/query/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def query():
     """Runs a RAW query against the database"""
     if request.method == 'GET':
