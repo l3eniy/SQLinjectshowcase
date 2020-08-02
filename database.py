@@ -71,20 +71,20 @@ class DatabaseHelper(object):
         cursor.executescript(query)
         self._db_connection.commit()
 
-    def select_safe(self, query, params):
-        """Runs the submitted query against the database"""
-        cursor = self.cursor
-        if params:
-            cursor.execute(query, params)
-        else:
-            cursor.execute(query)
-        return cursor.fetchall()
+    # def select_safe(self, query, params):
+    #     """Runs the submitted query against the database"""
+    #     cursor = self.cursor
+    #     if params:
+    #         cursor.execute(query, params)
+    #     else:
+    #         cursor.execute(query)
+    #     return cursor.fetchall()
 
-    def insert_safe(self, query, params):
-        """Runs the submitted query against the database"""
-        cursor = self.cursor
-        if params:
-            cursor.execute(query, params)
-        else:
-            cursor.execute(query)
-        self._db_connection.commit()
+    # def insert_safe(self, query, params):
+    #     """Runs the submitted query against the database"""
+    #     cursor = self.cursor
+    #     if params:
+    #         cursor.execute(query, params)
+    #     else:
+    #         cursor.execute(query)
+    #     self._db_connection.commit()

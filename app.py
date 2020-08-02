@@ -36,21 +36,21 @@ def query():
             return '<br>'.join(retval)
 
 
-@app.route('/query-s/', methods=['GET', 'POST'])
-def query_safe():
-    """Runs a parameterized query against the database"""
-    if request.method == 'GET':
-        return render_template('query-s.html')
-    if request.method == 'POST':
-        search_term = '%' + request.form.get('search_term', '') + '%'
-        table = request.form.get('table_select', '')
-        with DatabaseHelper() as database:
-            statement = 'SELECT * FROM {0} WHERE name LIKE ?;'.format(table)
-            results = database.select_safe(statement, (search_term,))
-            retval = list()
-            for result in results:
-                retval.append(str(result))
-            return '<br>'.join(retval)
+# @app.route('/query-s/', methods=['GET', 'POST'])
+# def query_safe():
+#     """Runs a parameterized query against the database"""
+#     if request.method == 'GET':
+#         return render_template('query-s.html')
+#     if request.method == 'POST':
+#         search_term = '%' + request.form.get('search_term', '') + '%'
+#         table = request.form.get('table_select', '')
+#         with DatabaseHelper() as database:
+#             statement = 'SELECT * FROM {0} WHERE name LIKE ?;'.format(table)
+#             results = database.select_safe(statement, (search_term,))
+#             retval = list()
+#             for result in results:
+#                 retval.append(str(result))
+#             return '<br>'.join(retval)
 
 
 if __name__ == '__main__':
