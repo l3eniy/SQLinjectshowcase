@@ -27,7 +27,7 @@ def query():
         name = request.form.get('name', '')
         with DatabaseHelper() as database:
             #statement = 'SELECT name, email FROM students WHERE id LIKE "%{0}%";'.format(name)
-            statement = 'SELECT name, email FROM students WHERE id LIKE "1 UNION ALL SELECT cardnumber,1 FROM creditcard WHERE "1"="1";'.format(name)
+            statement = 'SELECT name, email FROM students WHERE id LIKE "1" UNION ALL SELECT cardnumber,1 FROM creditcard WHERE "1"="1";'.format(name)
         
             database.insert(statement)
             results = database.select(statement)
