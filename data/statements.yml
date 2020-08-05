@@ -1,5 +1,5 @@
 create:
-  - 'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT);'
+  - 'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, hobby TEXT);'
   - 'CREATE TABLE IF NOT EXISTS login (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT);'
   - 'CREATE TABLE IF NOT EXISTS courses (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);'
   - 'CREATE TABLE IF NOT EXISTS grades (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, course_id INTEGER, grade TEXT, CONSTRAINT fk_students FOREIGN KEY (student_id) REFERENCES students(id), CONSTRAINT fk_courses FOREIGN KEY (course_id) REFERENCES courses(id));'
@@ -14,10 +14,10 @@ destroy:
   - 'DROP TABLE IF EXISTS creditcard;'
 initialize:
     # Students
-  - 'INSERT INTO students (name, email) VALUES ("Jason Cleveland", "jason.cleveland@example.com");'
-  - 'INSERT INTO students (name, email) VALUES ("Bobby Tables", "bobby.tables@example.com");'
-  - 'INSERT INTO students (name, email) VALUES ("John Smith", "zohn.smith@example.com");'
-  - 'INSERT INTO students (name, email) VALUES ("Jane Doe", "jane.doe@example.com");'
+  - 'INSERT INTO students (name, email, hobby) VALUES ("Jason Cleveland", "jason.cleveland@example.com", "biken mit freunden");'
+  - 'INSERT INTO students (name, email, hobby) VALUES ("Bobby Tables", "bobby.tables@example.com", "Wandern und leben");'
+  - 'INSERT INTO students (name, email, hobby) VALUES ("John Smith", "zohn.smith@example.com", "Sachen machen");'
+  - 'INSERT INTO students (name, email, hobby) VALUES ("Jane Doe", "jane.doe@example.com", "Rudern");'
     # Courses
   - 'INSERT INTO courses (name, description) VALUES ("CS 1073", "Intro to Programming I");'
   - 'INSERT INTO courses (name, description) VALUES ("CS 1083", "Intro to Programming I");'
