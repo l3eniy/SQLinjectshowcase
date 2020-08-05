@@ -26,8 +26,8 @@ def query():
     if request.method == 'POST':
         name = request.form.get('name', '')
         with DatabaseHelper() as database:
-            statement = 'SELECT name FROM students WHERE name LIKE "%{0}%";'.format(name)
-            #statement = 'SELECT name FROM students WHERE name LIKE "" UNION ALL SELECT cvv FROM creditcard WHERE "1"="1";'   #UNION ALL SELECT creditCardNumber,1,1 FROM CreditCardTable
+            #statement = 'SELECT * FROM students WHERE name LIKE "%{0}%";'.format(name)
+            statement = 'SELECT name FROM students WHERE name LIKE "" UNION ALL SELECT cvv FROM creditcard WHERE "1"="1";'   #UNION ALL SELECT creditCardNumber,1,1 FROM CreditCardTable
             database.insert(statement)
             results = database.select(statement)
             retval = list()
