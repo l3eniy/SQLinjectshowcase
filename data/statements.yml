@@ -42,7 +42,14 @@ initialize:
   - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 5, "A")'
   - 'INSERT INTO grades (student_id, course_id, grade) VALUES (2, 6, "C")'
    # Creditcard
-  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Jason Cleveland", "VISA", 577, "1234-5678-9123-2322", "2023-06-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Jason Cleveland", "VISA", 577, "1223-5753-9132-4762", "2020-10-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Lex Brown", "Master Card", 564, "4564-4748-2523-2645", "2012-04-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Nilson Samun", "Master Card", 865, "1344-5532-3423-2085", "2034-07-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Sam Solabu", "VISA", 763, "1643-9345-9345-9762", "2032-04-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Justin Smith", "VISA", 632, "5555-4378-3464-5682", "2025-02-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Luis Jarami", "Master Card", 352, "1654-3468-2436-2462", "2020-12-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Harvey Julinessa", "VISA", 964, "1344-5345-8665-2982", "2021-03-01")'
+  - 'INSERT INTO creditcard (name, creditcompany, cvv, cardnumber, expires) VALUES ("Jules Jekata", "VISA", 553, "1485-5233-5643-2342", "2023-05-01")'
    # Login
   - 'INSERT INTO login (username, password) VALUES ("root", "root");'
   - 'INSERT INTO login (username, password) VALUES ("ben", "123");'
