@@ -16,7 +16,7 @@ initialize:
     # Students
   - 'INSERT INTO students (name, email) VALUES ("Jason Cleveland", "jason.cleveland@example.com");'
   - 'INSERT INTO students (name, email) VALUES ("Bobby Tables", "bobby.tables@example.com");'
-  - 'INSERT INTO students (name, email) VALUES ("John Smith", "john.smith@example.com");'
+  - 'INSERT INTO students (name, email) VALUES ("John Smith", "zohn.smith@example.com");'
   - 'INSERT INTO students (name, email) VALUES ("Jane Doe", "jane.doe@example.com");'
     # Courses
   - 'INSERT INTO courses (name, description) VALUES ("CS 1073", "Intro to Programming I");'
